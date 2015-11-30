@@ -72,8 +72,8 @@ vector<int> cycle(vector<int> gameInfo)
         cout << "Magic Defense: " << gameInfo.at(4) << endl;
         cout << "Class: " << whatClass(gameInfo.at(5)) << endl;
         cout << "Level: " << gameInfo.at(6) << endl;
-        cout << "Experience: " << gameInfo.at(7) << "/" << 5*gameInfo.at(7)*(gameInfo.at(7)+1) << endl;
-        cout << "Coins: " << gameInfo.at(8) << endl << endl;
+        cout << "Experience: " << gameInfo.at(7) << "/" << 5*gameInfo.at(6)*(gameInfo.at(6)+1) << endl;
+        cout << "Coins: " << gameInfo.at(9) << endl << endl;
         cin.ignore();
     }
     if(choice == "6")

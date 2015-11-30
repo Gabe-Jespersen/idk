@@ -44,7 +44,7 @@ int main(int argc, char** argv)
     */
 
     vector<int> gameInfo = {stats.at(0),stats.at(1),stats.at(2),stats.at(3),stats.at(4),
-                            charClass, level, 0, 1, 0};
+                            charClass, 1, 0, 1, 0};
     //hp,atk,def,magatk,magdef,class,level,exp,alive,coins
 
 

@@ -92,3 +92,34 @@ vector<int> statMaker(int charClass)
             break;
     }
 }
+
+string whatClass(int classNumber)
+{
+    if(classNumber == 1)
+    {
+        return "Warrior";
+    }
+    else if(classNumber == 2)
+    {
+        return "Rogue";
+    }
+    else if(classNumber == 3)
+    {
+        return "Mage";
+    }
+    else
+    {
+        return "Priest";
+    }
+}
+
+vector<int> levelCheck(int level, int experience)
+{
+    while(experience >= 5*level*(level+1))
+    {
+        level++;
+        experience -= 5*level*(level+1);
+    }
+    vector<int> toReturn = {level,experience};
+    return toReturn;
+}

@@ -17,11 +17,14 @@
  */
 
 #include <vector>
+#include <string>
 
 #ifndef UTIL_H
 #define UTIL_H
 
 int classSelect();
 std::vector<int> statMaker(int);
+std::string whatClass(int);
+std::vector<int> levelCheck(int,int);
 
 #endif

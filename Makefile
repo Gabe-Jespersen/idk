@@ -14,7 +14,7 @@ main.o: main.cpp util.h cycle.h
 util.o: util.cpp util.h
 	$(CC) $(CFLAGS) -c util.cpp
 
-cycle.o: cycle.cpp cycle.h
+cycle.o: cycle.cpp cycle.h util.h
 	$(CC) $(CFLAGS) -c cycle.cpp
 
 

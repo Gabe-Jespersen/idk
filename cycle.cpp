@@ -70,12 +70,23 @@ vector<int> cycle(vector<int> gameInfo)
     if(choice == "3")
     {
         gameInfo.at(9) += fight(gameInfo,{gameInfo.at(0)-1,gameInfo.at(1)-1,gameInfo.at(2)-1,gameInfo.at(3)-1,gameInfo.at(4)-1,1,gameInfo.at(6)-1});
+        gameInfo.at(7) += gameInfo.at(6) * 5;
     }
     if(choice == "4")
     {
         int tempStat = rand()%5;
         int tempState;
         tempState = fight(gameInfo,{gameInfo.at(0)+tempStat-2,gameInfo.at(1)+tempStat-2,gameInfo.at(2)+tempStat-2,gameInfo.at(3)+tempStat-2,gameInfo.at(4)+tempStat-2,1,gameInfo.at(6)+tempStat-2});
+        if(tempState == -1)
+        {
+            cout << "You have lost.\n";
+            exit(-1);
+        }
+        else
+        {
+            gameInfo.at(9) += tempState;
+        }
+        gameInfo.at(7) += gameInfo.at(6) + tempStat;
     }
     if(choice == "5")
     {
@@ -99,6 +110,9 @@ vector<int> cycle(vector<int> gameInfo)
     tempLevelInfo = levelCheck(gameInfo.at(6),gameInfo.at(7));
     gameInfo.at(6) = tempLevelInfo.at(0);
     gameInfo.at(7) = tempLevelInfo.at(1);
-    
+    for(int i = 0; i < 5; i++)
+    {
+        gameInfo.at(i) += tempLevelInfo.at(2);
+    }
     return gameInfo;
 }

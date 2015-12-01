@@ -90,6 +90,7 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
             {
                 cout << "You don't deal any damage.\n";
             }
+            playerHealth--;
         }
         if(choice == "3")
         {
@@ -98,13 +99,24 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(choice == "4")
         {
-            playerHealth += playerStat.at(4);
-            cout << "You heal " << playerStat.at(4) << " health.\n";
+            playerHealth += playerStat.at(4)/2;
+            cout << "You heal " << playerStat.at(4)/2 << " health.\n";
         }
         if(choice == "5")
         {
             stolen += playerStat.at(6);
             cout << "You steal " << playerStat.at(6) << " dollars.\n";
+        }
+
+        if(enemyHealth <= 0)
+        {
+            cout << "You have won.\n";
+            return stolen;
+        }
+        if(playerHealth <= 0)
+        {
+            cout << "You have lost.\n";
+            return -1;
         }
 
         if(enemyChoice == "1")
@@ -129,13 +141,13 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
             }
             if(damage > 0)
             {
-                cout << "Your enemy does " << damage << " damage, leaving you at "
-                     << playerHealth << "health.\n";
+                cout << "Your enemy does " << damage << " damage.\n";
             }
             else
             {
                 cout << "Your enemy does no damage.\n";
             }
+            enemyHealth--;
         }
         if(enemyChoice == "3")
         {
@@ -144,25 +156,41 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(enemyChoice == "4")
         {
-            enemyHealth += enemyStat.at(4);
-            cout << "Your enemy heals " << enemyStat.at(4) << " health.\n";
+            enemyHealth += enemyStat.at(4)/2;
+            cout << "Your enemy heals " << enemyStat.at(4)/2 << " health.\n";
         }
 
-        if(playerHealth <= 0)
-        {
-            cout << "You have lost.\n";
-            return -1;
-        }
         if(enemyHealth <= 0)
         {
             cout << "You have won.\n";
             return stolen;
         }
+        if(playerHealth <= 0)
+        {
+            cout << "You have lost.\n";
+            return -1;
+        }
+
+        cout << "HP: " << playerHealth << endl;
+        cout << "Enemy HP: " << enemyHealth << endl;
     }
     return -1;
 }
 
 string enemyFight(int selfHealth, int enemyHealth, vector<int> enemyStat)
 {
-    return "1";
+    //gameInfo is in this order:
+    //hp,atk,def,magatk,magdef,class,level,exp,alive,coins
+    if(enemyHealth < (enemyStat.at(1)*1.5)-enemyStat.at(2) || enemyHealth < enemyStat.at(3))
+    {
+        return "4";
+    }
+    else if((enemyStat.at(1)*1.5)-enemyStat.at(2) >= enemyStat.at(3))
+    {
+        return "1";
+    }
+    else
+    {
+        return "3";
+    }
 }

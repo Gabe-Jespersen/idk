@@ -71,19 +71,19 @@ vector<int> statMaker(int charClass)
     switch(charClass)
     {
         case 1:
-            stats = {10,8+(rand()%4),8+(rand()%4),5,5,7+(rand()%3)};
+            stats = {10,8+(rand()%4),8+(rand()%4),3,6,7+(rand()%3)};
             return stats;
             break;
         case 2:
-            stats = {6,7+(rand()%3),5,6,6,12+(rand()%5)};
+            stats = {6,7+(rand()%3),5,4,6,12+(rand()%5)};
             return stats;
             break;
         case 3:
-            stats = {8,5,5,8+(rand()%4),7+(rand()%4),6+(rand()%2)};
+            stats = {8,5,5,4+(rand()%4),6+(rand()%4),6+(rand()%2)};
             return stats;
             break;
         case 4:
-            stats = {8,5,5,7+(rand()%4),8+(rand()%4),6+(rand()%2)};
+            stats = {8,5,5,3+(rand()%4),8+(rand()%4),6+(rand()%2)};
             return stats;
             break;
         default:
@@ -115,15 +115,17 @@ string whatClass(int classNumber)
 
 vector<int> levelCheck(int level, int experience)
 {
+    int temp = 0;
     while(experience >= 5*level*(level+1))
     {
         level++;
+        temp++;
         experience -= 5*level*(level+1);
     }
     if(experience < 0)
     {
         experience = 0;
     }
-    vector<int> toReturn = {level,experience};
+    vector<int> toReturn = {level,experience,temp};
     return toReturn;
 }

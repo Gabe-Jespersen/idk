@@ -120,6 +120,10 @@ vector<int> levelCheck(int level, int experience)
         level++;
         experience -= 5*level*(level+1);
     }
+    if(experience < 0)
+    {
+        experience = 0;
+    }
     vector<int> toReturn = {level,experience};
     return toReturn;
 }

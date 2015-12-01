@@ -23,11 +23,14 @@
 #include <unistd.h>
 
 #include "util.h"
+#include "fight.h"
 
 using namespace std;
 
 vector<int> cycle(vector<int> gameInfo)
 {
+    srand(time(NULL));
+
     string choice;
 
     //gameInfo is in this order:
@@ -53,12 +56,20 @@ vector<int> cycle(vector<int> gameInfo)
     }
     if(choice == "2")
     {
+        cout << "Buy a random stat upgrade for " << gameInfo.at(9)+(rand()%5) << " dollars?\n";
+        string buy;
+        if((buy == "yes" || buy == "Yes") && gameInfo.at(9)+5>=0)
+        {
+            gameInfo.at(rand()%5)++;
+        }
+        else
+        {
+            cout << "Thanks for your time.\n";
+        }
     }
     if(choice == "3")
     {
-        int toFightLevel;
-        cout << "What level would you like to fight?\n";
-        cin >> toFightLevel;
+        gameInfo.at(9) += fight(gameInfo,{gameInfo.at(0)-1,gameInfo.at(1)-1,gameInfo.at(2)-1,gameInfo.at(3)-1,gameInfo.at(4)-1,1,gameInfo.at(6)-1});
     }
     if(choice == "4")
     {

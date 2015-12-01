@@ -19,6 +19,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 #include "util.h"
 #include "fight.h"
@@ -27,6 +28,8 @@ using namespace std;
 
 int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
 {
+    srand(time(NULL));
+
     int stolen = 0;
 
     string choice;
@@ -94,12 +97,13 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(choice == "3")
         {
-            enemyHealth -= playerStat.at(3);
-            cout << "You deal " << playerStat.at(3) << " damage.\n";
+            int tempDamage = (rand()%3)-1+playerStat.at(3);
+            enemyHealth -= tempDamage;
+            cout << "You deal " << tempDamage << " damage.\n";
         }
         if(choice == "4")
         {
-            playerHealth += playerStat.at(4)/2;
+            playerHealth += playerStat.at(4)/4;
             cout << "You heal " << playerStat.at(4)/2 << " health.\n";
         }
         if(choice == "5")
@@ -151,8 +155,9 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(enemyChoice == "3")
         {
-            playerHealth -= enemyStat.at(3);
-            cout << "Your enemy deals " << enemyStat.at(3) << " damage.\n";
+            int tempDamage = (rand()%3)-1+enemyStat.at(3);
+            playerHealth -= tempDamage;
+            cout << "Your enemy deals " << tempDamage << " damage.\n";
         }
         if(enemyChoice == "4")
         {

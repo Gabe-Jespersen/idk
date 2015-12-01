@@ -73,6 +73,9 @@ vector<int> cycle(vector<int> gameInfo)
     }
     if(choice == "4")
     {
+        int tempStat = rand()%5;
+        int tempState;
+        tempState = fight(gameInfo,{gameInfo.at(0)+tempStat-2,gameInfo.at(1)+tempStat-2,gameInfo.at(2)+tempStat-2,gameInfo.at(3)+tempStat-2,gameInfo.at(4)+tempStat-2,1,gameInfo.at(6)+tempStat-2});
     }
     if(choice == "5")
     {

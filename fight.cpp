@@ -20,6 +20,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <unistd.h>
 
 #include "util.h"
 #include "fight.h"
@@ -41,6 +42,8 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
     bool selfDefend;
     bool enemyDefend;
 
+    int playerMP = playerStat.at(3) + playerStat.at(4);
+
     //gameInfo is in this order:
     //hp,atk,def,magatk,magdef,class,level,exp,alive,coins
     
@@ -50,7 +53,9 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
              << "\t1. Physical Attack\n"
              << "\t2. Defend\n"
              << "\t3. Magic Attack\n"
+             << "\t\tMP Cost: " << playerStat.at(3) << endl
              << "\t4. Magic Heal\n"
+             << "\t\tMP Cost: " << playerStat.at(4) << endl
              << "\t5. Snatch\n\n";
         cin >> choice;
 
@@ -97,14 +102,30 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(choice == "3")
         {
-            int tempDamage = (rand()%3)-1+playerStat.at(3);
-            enemyHealth -= tempDamage;
-            cout << "You deal " << tempDamage << " damage.\n";
+            if(playerMP < playerStat.at(3))
+            {
+                cout << "Not enough MP\n";
+            }
+            else
+            {
+                int tempDamage = (rand()%3)-1+playerStat.at(3);
+                enemyHealth -= tempDamage;
+                cout << "You deal " << tempDamage << " damage.\n";
+                playerMP -= playerStat.at(3);
+            }
         }
         if(choice == "4")
         {
-            playerHealth += playerStat.at(4)/4;
-            cout << "You heal " << playerStat.at(4)/2 << " health.\n";
+            if(playerMP < playerStat.at(4))
+            {
+                cout << "Not enough MP\n";
+            }
+            else
+            {
+                playerHealth += playerStat.at(4)/4;
+                cout << "You heal " << playerStat.at(4)/2 << " health.\n";
+                playerMP -= playerStat.at(4);
+            }
         }
         if(choice == "5")
         {
@@ -177,7 +198,9 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
 
         cout << "HP: " << playerHealth << endl;
+        cout << "MP: " << playerMP << endl;
         cout << "Enemy HP: " << enemyHealth << endl;
+        sleep(3);
     }
     return -1;
 }

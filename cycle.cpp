@@ -42,7 +42,7 @@ vector<int> cycle(vector<int> gameInfo)
     cout << "\t3. Spar\n";
     cout << "\t4. Adventure\n";
     cout << "\t5. Info\n";
-    cout << "\t6. Quit\n\n";
+    cout << "\t6. Quit\n";
 
     cin >> choice;
 
@@ -79,7 +79,7 @@ vector<int> cycle(vector<int> gameInfo)
         tempState = fight(gameInfo,{gameInfo.at(0)+tempStat-2,gameInfo.at(1)+tempStat-2,gameInfo.at(2)+tempStat-2,gameInfo.at(3)+tempStat-2,gameInfo.at(4)+tempStat-2,1,gameInfo.at(6)+tempStat-2});
         if(tempState == -1)
         {
-            cout << "You have lost.\n";
+            cout << "You have lost. Permanently.\n";
             exit(-1);
         }
         else
@@ -114,5 +114,13 @@ vector<int> cycle(vector<int> gameInfo)
     {
         gameInfo.at(i) += tempLevelInfo.at(2);
     }
+
+    if(gameInfo.at(9)<0)
+    {
+        gameInfo.at(9) = 0;
+    }
+
+    sleep(1);
+
     return gameInfo;
 }

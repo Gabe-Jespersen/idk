@@ -105,7 +105,7 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
             }
             else
             {
-                int tempDamage = (rand()%3)-1+playerStat.at(3);
+                int tempDamage = playerStat.at(3)-1;
                 enemyHealth -= tempDamage;
                 cout << "You deal " << tempDamage << " damage.\n";
                 playerMP -= playerStat.at(3);
@@ -173,7 +173,7 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         }
         if(enemyChoice == "3")
         {
-            int tempDamage = (rand()%3)-1+enemyStat.at(3);
+            int tempDamage = enemyStat.at(3)-1;
             playerHealth -= tempDamage;
             cout << "Your enemy deals " << tempDamage << " damage.\n";
         }

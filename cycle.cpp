@@ -42,7 +42,8 @@ vector<int> cycle(vector<int> gameInfo)
     cout << "\t3. Spar\n";
     cout << "\t4. Adventure\n";
     cout << "\t5. Info\n";
-    cout << "\t6. Quit\n";
+    cout << "\t6. Work\n";
+    cout << "\t7. Quit\n";
 
     cin >> choice;
 
@@ -58,13 +59,14 @@ vector<int> cycle(vector<int> gameInfo)
     {
         cout << "Buy a random stat upgrade for " << gameInfo.at(9)+(rand()%5) << " dollars?\n";
         string buy;
-        if((buy == "yes" || buy == "Yes") && gameInfo.at(9)+5>=0)
+        if((buy == "yes" || buy == "Yes" || buy == "y" || buy == "Y") && gameInfo.at(9)-5>=0)
         {
             gameInfo.at(rand()%5)++;
+            gameInfo.at(9) -= 5;
         }
         else
         {
-            cout << "Thanks for your time.\n";
+            cout << "Thanks for your time. Come back again, and make sure you have enough money.\n";
         }
     }
     if(choice == "3")
@@ -102,6 +104,14 @@ vector<int> cycle(vector<int> gameInfo)
         cin.ignore();
     }
     if(choice == "6")
+    {
+        int workTime;
+        cout << "How long would you like to work?\n";
+        cin >> workTime;
+        sleep(workTime);
+        gameInfo.at(9) += workTime/2;
+    }
+    if(choice == "7")
     {
         exit(2);
     }

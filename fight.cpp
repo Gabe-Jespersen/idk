@@ -75,23 +75,20 @@ int fight(vector<int> playerStat, vector<int> enemyStat)//int for money stolen
         {
             int damage;
             if(enemyDefend)
-            {
-                damage = playerStat.at(1)-enemyStat.at(1);
-                if(damage > 0)
-                {
-                    enemyHealth -= damage;
-                }
-            }
+            {}
             else
             {
-                damage = (playerStat.at(1)*1.5)-enemyStat.at(1);
-                if(damage > 0)
+                damage = (playerStat.at(1)*2)-enemyStat.at(1);
+                cout << damage << endl;
+                if(damage >= 0)
                 {
+                    cout << damage << endl;
                     enemyHealth -= damage;
                 }
             }
             if(damage > 0)
             {
+                cout << damage << endl;
                 cout << "You deal " << damage << " damage.\n";
             }
             else
